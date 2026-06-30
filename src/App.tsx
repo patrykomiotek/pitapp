@@ -1,9 +1,11 @@
 import "./App.css";
 import Generator from "./components/Generator";
+import { IndexKeys } from "./components/IndexKeys";
 
 function App() {
   return (
     <>
+      {/* <IndexKeys /> */}
       <Generator />
       {/* <Text>Hello!</Text> */}
       {/* <ValueKeeper /> */}

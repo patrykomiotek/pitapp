@@ -1,11 +1,16 @@
+import { memo } from "react";
+
 interface Props {
-  children: string; // React.ReactNode;
+  children: React.ReactNode;
 }
 
 // <Text value="Costam" />
 // <Text>Costam <span>ostylowany</span></Text>
-export const Text = ({ children }: Props) => {
+export const Text = memo(({ children }: Props) => {
+  // porównanie po wartości
   return <p>{children}</p>;
-};
+});
+
+Text.displayName = "memo(Text)";
 
 // export default Text;
