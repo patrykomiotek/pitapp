@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, type ComponentProps } from "react";
 
 const colors = {
   emerald: "#2ecc71",
@@ -13,24 +13,31 @@ type Color = keyof typeof colors;
 // type Colors = "red" | 'green';
 // const ColorsValues: Record<Colors, string> = {red: "red", green: "green"};
 
-interface Props {
-  children: string;
-  onClick: () => void;
+type Props = {
+  // children: string;
+  // onClick: () => void; // id, disabled, type=submit|reset|button, className, style
   bgColor?: Color;
   color?: Color;
-}
+} & ComponentProps<"button">;
 
 // <Button bgColor="alizarin" color="clouds">Click me</Button>
 
 export const Button = memo(
-  ({ children, onClick, bgColor = "peter-river", color = "clouds" }: Props) => {
+  ({
+    children,
+    style,
+    bgColor = "peter-river",
+    color = "clouds",
+    ...rest
+  }: Props) => {
     const styles = {
+      ...style,
       color: colors[color],
       backgroundColor: colors[bgColor],
     };
 
     return (
-      <button style={styles} onClick={onClick}>
+      <button {...rest} style={styles}>
         {children}
       </button>
     );

@@ -1,5 +1,6 @@
 import { useState, type ChangeEventHandler, type SubmitEvent } from "react";
 import { Text } from "../ui/Text";
+import { Button, Input } from "../ui";
 
 interface FormData {
   email: string;
@@ -35,25 +36,25 @@ export const RegistrationFormWithState = () => {
         {formData.email} {formData.password}
       </Text>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
-        <input
+        <Input
           type="text"
           name="language"
           value={formData.language}
           onChange={handleChange}
         />
-        <input
+        <Input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
-        <button type={"submit"}>Wyslij</button>
+        <Button type="submit">Wyslij</Button>
       </form>
     </div>
   );
