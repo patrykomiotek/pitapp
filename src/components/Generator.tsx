@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Text } from "../ui";
 
@@ -16,6 +16,10 @@ const Generator = () => {
     );
   }, []);
 
+  const handleClick = useCallback(() => {
+    setValue(uuidv4());
+  }, []);
+
   return (
     <div>
       <Text>Click to regenerate</Text>
@@ -24,7 +28,8 @@ const Generator = () => {
       </Text> */}
       <Text>{memoizedValue}</Text>
       <Text>{value}</Text>
-      <Button onClick={() => setValue(uuidv4())}>Generate</Button>
+      {/* <Button onClick={() => handleClick}>Generate</Button> */}
+      <Button onClick={handleClick}>Generate</Button>
     </div>
   );
 };

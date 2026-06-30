@@ -13,4 +13,4 @@ export const Text = memo(({ children }: Props) => {
 
 Text.displayName = "memo(Text)";
 
-// export default Text;
+// export default memo(Text);
