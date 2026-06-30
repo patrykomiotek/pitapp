@@ -6,11 +6,13 @@ import { RegistrationFormWithRefs } from "./components/RegistrationFormWithRefs"
 import { RegistrationFormWithRHF } from "./components/RegistrationFormWithRHF";
 import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
+import { ProductsListPage } from "./features/products/pages/ProductsListPage";
 
 function App() {
   return (
     <>
-      <RegistrationFormWithRHF />
+      <ProductsListPage />
+      {/* <RegistrationFormWithRHF /> */}
       {/* <RegistrationFormWithRefs /> */}
       {/* <RegistrationFormWithState /> */}
       {/* <IndexKeys /> */}
