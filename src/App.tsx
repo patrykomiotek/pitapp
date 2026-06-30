@@ -2,7 +2,7 @@ import "./App.css";
 import { Counter } from "./components/Counter";
 import Generator from "./components/Generator";
 import { IndexKeys } from "./components/IndexKeys";
-import { RegistrationFormWithState } from "./components/RegistrationForm";
+import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
 
 function App() {
