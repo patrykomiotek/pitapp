@@ -2,13 +2,15 @@ import "./App.css";
 import { Counter } from "./components/Counter";
 import Generator from "./components/Generator";
 import { IndexKeys } from "./components/IndexKeys";
+import { RegistrationFormWithRefs } from "./components/RegistrationFormWithRefs";
 import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
 
 function App() {
   return (
     <>
-      <RegistrationFormWithState />
+      <RegistrationFormWithRefs />
+      {/* <RegistrationFormWithState /> */}
       {/* <IndexKeys /> */}
       {/* <Generator /> */}
       {/* <Counter /> */}
