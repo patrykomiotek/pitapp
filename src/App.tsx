@@ -3,13 +3,15 @@ import { Counter } from "./components/Counter";
 import Generator from "./components/Generator";
 import { IndexKeys } from "./components/IndexKeys";
 import { RegistrationFormWithRefs } from "./components/RegistrationFormWithRefs";
+import { RegistrationFormWithRHF } from "./components/RegistrationFormWithRHF";
 import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
 
 function App() {
   return (
     <>
-      <RegistrationFormWithRefs />
+      <RegistrationFormWithRHF />
+      {/* <RegistrationFormWithRefs /> */}
       {/* <RegistrationFormWithState /> */}
       {/* <IndexKeys /> */}
       {/* <Generator /> */}
