@@ -12,7 +12,7 @@ export const Counter = () => {
     }, 1000);
 
     return () => {
-      // odmontowywanie
+      // odmontowywanie komponentu lub po kadej zmianie stanu
       // destruktor
       clearInterval(id);
     };

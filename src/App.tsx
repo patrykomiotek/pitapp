@@ -2,13 +2,15 @@ import "./App.css";
 import { Counter } from "./components/Counter";
 import Generator from "./components/Generator";
 import { IndexKeys } from "./components/IndexKeys";
+import { UserAge } from "./components/UserAge";
 
 function App() {
   return (
     <>
       {/* <IndexKeys /> */}
       {/* <Generator /> */}
-      <Counter />
+      {/* <Counter /> */}
+      <UserAge />
       {/* <Text>Hello!</Text> */}
       {/* <ValueKeeper /> */}
       {/* <section id="center">
