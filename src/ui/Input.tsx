@@ -16,3 +16,5 @@ export const Input = forwardRef(
     );
   },
 );
+
+Input.displayName = "forwardRef(Input)";

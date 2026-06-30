@@ -1,4 +1,4 @@
-import { useRef, type SubmitEvent } from "react";
+import { useRef, type ChangeEventHandler, type SubmitEvent } from "react";
 import { Button, Input } from "../ui";
 
 interface FormData {
@@ -26,11 +26,24 @@ export const RegistrationFormWithRefs = () => {
     });
   };
 
+  const handleLanguageChange: ChangeEventHandler<HTMLInputElement> = () => {
+    if (languageRef.current && languageRef.current.value === "php") {
+      console.log("hello");
+      languageRef.current.value = "java";
+      languageRef.current.style.border = "#f00 1px solid";
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <Input ref={emailRef} type="text" name="email" />
-        <Input ref={languageRef} type="text" name="language" />
+        <Input
+          ref={languageRef}
+          type="text"
+          name="language"
+          onChange={handleLanguageChange}
+        />
         <Input ref={passwordRef} type="password" name="password" />
         <Button type="submit">Wyslij</Button>
       </form>
