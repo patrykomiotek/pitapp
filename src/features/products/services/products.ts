@@ -20,7 +20,7 @@ type AirtableResponse<T> = {
 export const fetchProducts = async () => {
   return await api
     .get<AirtableResponse<ProductDto[]>>("/products") // categories, users
-    .then((res) => res.data)
+    .then((res) => res.data.records)
     .catch((err) => Promise.reject(err));
 };
 
