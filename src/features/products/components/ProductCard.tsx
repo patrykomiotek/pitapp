@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Header } from "../../../ui";
 import type { ProductDto } from "../contracts/Product.dto";
 
@@ -15,7 +16,9 @@ export const ProductCard = ({ id, product }: Props) => {
 
   return (
     <div key={id} className="m-4 p-4 outline rounded-md">
-      <Header>{name}</Header>
+      <Header>
+        <Link to={`/products/${id}`}>{name}</Link>
+      </Header>
       <div>
         <p className="font-medium">{description}</p>
         <p className="text-sm text-slate-500">${price}</p>
