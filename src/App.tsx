@@ -13,6 +13,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { routes } from "./routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ThemeProvider } from "components/Theme/ThemeContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,8 +37,10 @@ function App() {
         </Helmet>
 
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={routes} />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ThemeProvider>
+            <RouterProvider router={routes} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </ThemeProvider>
         </QueryClientProvider>
         {/* <ProductsListPage /> */}
         {/* <RegistrationFormWithRHF /> */}
