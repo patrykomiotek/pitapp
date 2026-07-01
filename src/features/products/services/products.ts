@@ -1,18 +1,39 @@
-import axios, { type AxiosResponse } from "axios";
-import type { ProductDto } from "../contracts/Product.dto";
+import axios from "axios";
+import type { CreateProductDto, ProductDto } from "../contracts/Product.dto";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const API_TOKEN = import.meta.env.VITE_API_TOKEN;
 
-export const getAuthorizationHeader = () => ({
+const api = axios.create({
+  baseURL: API_BASE_URL,
   headers: {
     Authorization: `Bearer ${API_TOKEN}`,
+    "Content-Type": "application/json",
   },
 });
 
-export const fetchProducts = async (): Promise<{ records: ProductDto[] }> => {
-  return await axios
-    .get(`${API_BASE_URL}/products`, getAuthorizationHeader())
-    .then((res: AxiosResponse<{ records: ProductDto[] }>) => res.data)
+type AirtableResponse<T> = {
+  records: T;
+};
+
+// create, read one
+export const fetchProducts = async () => {
+  return await api
+    .get<AirtableResponse<ProductDto[]>>("/products") // categories, users
+    .then((res) => res.data)
+    .catch((err) => Promise.reject(err));
+};
+
+export const createProduct = async (data: CreateProductDto) => {
+  return await api
+    .post("/products", { records: [{ fields: data }] })
+    .then((res) => res.data)
+    .catch((err) => Promise.reject(err));
+};
+
+export const fetchProduct = async (id: ProductDto["id"]) => {
+  return await api
+    .get<ProductDto>(`/products/${id}`)
+    .then((res) => res.data)
     .catch((err) => Promise.reject(err));
 };

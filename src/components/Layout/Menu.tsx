@@ -20,6 +20,11 @@ export const Menu = () => {
             Products
           </NavLink>
         </li>
+        <li>
+          <NavLink to={ROUTE.CREATE_PRODUCT.path} className="text-blue-600">
+            Create product
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

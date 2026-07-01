@@ -11,9 +11,9 @@ type Props = {
 export const Input = forwardRef(
   ({ label, error, ...rest }: Props, ref: ForwardedRef<HTMLInputElement>) => {
     return (
-      <div>
+      <div className="space-y-2">
         <label>{label}</label>
-        <input ref={ref} {...rest} />
+        <input ref={ref} {...rest} className="border" />
         {error && <p style={{ color: "red" }}>{error.message}</p>}
       </div>
     );
