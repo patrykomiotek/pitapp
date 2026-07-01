@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { ROUTE } from "../routes";
 import { Header } from "ui";
 import { AuthInfo } from "components/Auth/AuthInfo";
-import { AuthContext } from "components/Auth/AuthContext";
+import { AuthProvider } from "components/Auth/AuthContext";
 
 export const HomePage = () => {
   return (
@@ -12,9 +12,9 @@ export const HomePage = () => {
       </Helmet>
       <div>
         <Header>Home page</Header>
-        <AuthContext.Provider value={{ isLoggedId: true }}>
+        <AuthProvider>
           <AuthInfo />
-        </AuthContext.Provider>
+        </AuthProvider>
       </div>
     </>
   );
