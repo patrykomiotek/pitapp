@@ -1,3 +1,4 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import { Counter } from "./components/Counter";
 import Generator from "./components/Generator";
@@ -7,11 +8,13 @@ import { RegistrationFormWithRHF } from "./components/RegistrationFormWithRHF";
 import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
 import { ProductsListPage } from "./features/products/pages/ProductsListPage";
+import { routes } from "./routes";
 
 function App() {
   return (
     <>
-      <ProductsListPage />
+      <RouterProvider router={routes} />
+      {/* <ProductsListPage /> */}
       {/* <RegistrationFormWithRHF /> */}
       {/* <RegistrationFormWithRefs /> */}
       {/* <RegistrationFormWithState /> */}
