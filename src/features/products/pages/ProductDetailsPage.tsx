@@ -5,6 +5,7 @@ import { fetchProduct } from "../services/products";
 import { ProductDetails } from "../components/ProductDetails";
 import { useParams } from "react-router-dom";
 import { useApi } from "@/shared/hooks/useApi";
+import { useQuery } from "@tanstack/react-query";
 // import { ROUTE } from "../../../routes";
 // import { Helmet } from "react-helmet-async";
 
@@ -18,10 +19,14 @@ export const ProductDetailsPage = () => {
   // const [isLoading, setIsLoading] = useState(true);
   // const [isError, setIsError] = useState(false);
   const { id } = useParams<{ id: string }>();
-  const { data, isError, isLoading } = useApi<ProductDto | null>(
-    () => fetchProduct(id!),
-    null,
-  );
+  // const { data, isError, isLoading } = useApi<ProductDto | null>(
+  //   () => fetchProduct(id!),
+  //   null,
+  // );
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["product-details", id],
+    queryFn: () => fetchProduct(id!),
+  });
 
   // useEffect(() => {
   //   let ignore = false;

@@ -11,6 +11,20 @@ import { ProductsListPage } from "./features/products/pages/ProductsListPage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { routes } from "./routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 10,
+      retry: 2,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: false,
+    },
+  },
+});
 
 function App() {
   return (
@@ -20,7 +34,11 @@ function App() {
           <title>Hello World</title>
           <link rel="canonical" href="https://www.tacobell.com/" />
         </Helmet>
-        <RouterProvider router={routes} />
+
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={routes} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
         {/* <ProductsListPage /> */}
         {/* <RegistrationFormWithRHF /> */}
         {/* <RegistrationFormWithRefs /> */}

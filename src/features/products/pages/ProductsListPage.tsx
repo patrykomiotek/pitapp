@@ -3,9 +3,14 @@ import { ProductsList } from "../components/ProductsList";
 import type { ProductDto } from "../contracts/Product.dto";
 import { fetchProducts } from "../services/products";
 import { useApi } from "@/shared/hooks/useApi";
+import { useQuery } from "@tanstack/react-query";
 
 export const ProductsListPage = () => {
-  const { data, isError, isLoading } = useApi<ProductDto[]>(fetchProducts, []);
+  // const { data, isError, isLoading } = useApi<ProductDto[]>(fetchProducts, []);
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
