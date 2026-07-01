@@ -1,4 +1,4 @@
-import { Header } from "../../../ui";
+import { Button, Header } from "../../../ui";
 import { ProductsList } from "../components/ProductsList";
 import type { ProductDto } from "../contracts/Product.dto";
 import { fetchProducts } from "../services/products";
@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const ProductsListPage = () => {
   // const { data, isError, isLoading } = useApi<ProductDto[]>(fetchProducts, []);
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
@@ -26,6 +26,7 @@ export const ProductsListPage = () => {
         <Header>Products</Header>
 
         <div className="flex gap-2 items-center"></div>
+        <Button onClick={() => refetch()}>Refetch</Button>
 
         {data && <ProductsList products={data} />}
       </div>
