@@ -7,7 +7,9 @@ import { fetchProducts } from "../services/products";
 // import { Helmet } from "react-helmet-async";
 
 export const ProductsListPage = () => {
-  const [products, setProducts] = useState<ProductDto[]>([]);
+  const [data, setData] = useState<ProductDto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     let ignore = false;
@@ -16,10 +18,13 @@ export const ProductsListPage = () => {
       try {
         const response = await fetchProducts();
         if (!ignore) {
-          setProducts(response.records);
+          setData(response.records);
         }
       } catch {
         // fail
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -29,6 +34,14 @@ export const ProductsListPage = () => {
       ignore = true;
     };
   }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-red">Oh no an error has occurred!</p>;
+  }
 
   return (
     <>
@@ -40,7 +53,7 @@ export const ProductsListPage = () => {
 
         <div className="flex gap-2 items-center"></div>
 
-        {products && <ProductsList products={products} />}
+        {data && <ProductsList products={data} />}
       </div>
     </>
   );
