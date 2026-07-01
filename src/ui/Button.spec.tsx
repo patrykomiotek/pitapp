@@ -4,8 +4,7 @@ import { Button } from "./Button";
 
 describe("Button component", () => {
   it("worst test ever", () => {
-    const { debug } = render(<Button>Click me</Button>);
-    debug();
+    render(<Button>Click me</Button>);
     expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 
