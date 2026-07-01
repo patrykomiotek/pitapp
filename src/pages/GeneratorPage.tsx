@@ -1,5 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import Generator from "../components/Generator";
+import { ROUTE } from "../routes";
 
 export const GeneratorPage = () => {
-  return <Generator />;
+  return (
+    <>
+      <Helmet>
+        <title>{ROUTE.GENERATOR.title}</title>
+      </Helmet>
+      <Generator />
+    </>
+  );
 };

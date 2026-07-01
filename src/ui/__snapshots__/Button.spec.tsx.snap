@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button component > should match snapshot 1`] = `
+<div>
+  <button
+    style="color: rgb(236, 240, 241); background-color: rgb(52, 152, 219);"
+  >
+    Click me
+  </button>
+</div>
+`;

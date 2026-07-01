@@ -4,7 +4,25 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    "types": ["vite/client"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/shared/*": ["shared/*"],
+      "@/components/*": ["shared/components/*"],
+      "@/ui": ["shared/ui"],
+      "@/atoms/*": ["shared/ui/atoms/*"],
+      "@/molecules/*": ["shared/ui/molecules/*"],
+      "@/organisms/*": ["shared/ui/organisms/*"],
+      "@/pages/*": ["pages/*"],
+      "@/hooks/*": ["shared/hooks/*"],
+      "@/stories/*": ["stories/*"],
+      "@/services/*": ["shared/services/*"],
+      "@/features/*": ["features/*"],
+      "@/types/*": ["shared/types/*"],
+      "@/sagas/*": ["sagas/*"]
+      // "@types/*": ["types/*"] // not working
+    },
+    "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
+
     "skipLibCheck": true,
 
     /* Bundler mode */

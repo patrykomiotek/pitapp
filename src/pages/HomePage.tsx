@@ -1,7 +1,16 @@
+import { Helmet } from "react-helmet-async";
+import { ROUTE } from "../routes";
+import { Header } from "ui";
+
 export const HomePage = () => {
   return (
-    <div>
-      <h1>Home page</h1>
-    </div>
+    <>
+      <Helmet>
+        <title>{ROUTE.HOME.title}</title>
+      </Helmet>
+      <div>
+        <Header>Home page</Header>
+      </div>
+    </>
   );
 };

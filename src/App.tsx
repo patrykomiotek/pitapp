@@ -8,23 +8,30 @@ import { RegistrationFormWithRHF } from "./components/RegistrationFormWithRHF";
 import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
 import { UserAge } from "./components/UserAge";
 import { ProductsListPage } from "./features/products/pages/ProductsListPage";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import { routes } from "./routes";
 
 function App() {
   return (
     <>
-      <RouterProvider router={routes} />
-      {/* <ProductsListPage /> */}
-      {/* <RegistrationFormWithRHF /> */}
-      {/* <RegistrationFormWithRefs /> */}
-      {/* <RegistrationFormWithState /> */}
-      {/* <IndexKeys /> */}
-      {/* <Generator /> */}
-      {/* <Counter /> */}
-      {/* <UserAge /> */}
-      {/* <Text>Hello!</Text> */}
-      {/* <ValueKeeper /> */}
-      {/* <section id="center">
+      <HelmetProvider>
+        <Helmet>
+          <title>Hello World</title>
+          <link rel="canonical" href="https://www.tacobell.com/" />
+        </Helmet>
+        <RouterProvider router={routes} />
+        {/* <ProductsListPage /> */}
+        {/* <RegistrationFormWithRHF /> */}
+        {/* <RegistrationFormWithRefs /> */}
+        {/* <RegistrationFormWithState /> */}
+        {/* <IndexKeys /> */}
+        {/* <Generator /> */}
+        {/* <Counter /> */}
+        {/* <UserAge /> */}
+        {/* <Text>Hello!</Text> */}
+        {/* <ValueKeeper /> */}
+        {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
@@ -130,6 +137,7 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section> */}
+      </HelmetProvider>
     </>
   );
 }
