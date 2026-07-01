@@ -5,7 +5,7 @@ import { Button, Text } from "../ui";
 // const style = { color: "red" };
 
 const Generator = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(() => uuidv4());
 
   // zamroenie refernecji, referential equality
   const memoizedValue = useMemo(() => {

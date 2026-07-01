@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { ProductDetails } from "./ProductDetails";
 import type { ProductDto } from "../contracts/Product.dto";
 
@@ -15,7 +15,7 @@ describe("ProductDetails component", () => {
   };
   it("should fill html elements", () => {
     const { debug } = render(<ProductDetails product={product} />);
-    debug();
+    // debug();
     expect(screen.getByText("Product 1")).toBeTruthy();
   });
 });
