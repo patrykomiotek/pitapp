@@ -51,7 +51,8 @@ export const ClassifyObjectForm = ({ object, onDone }: Props) => {
   });
 
   const mutation = useMutation({
-    mutationFn: (values: ClassifyFormValues) => classifyObject(object.id, values),
+    mutationFn: (values: ClassifyFormValues) =>
+      classifyObject(object.id, values),
     onSuccess: () => {
       // Inwalidacja listy — polling i tak odświeży, ale to wymusza natychmiastowy refetch.
       queryClient.invalidateQueries({ queryKey: ["objects"] });
@@ -78,7 +79,9 @@ export const ClassifyObjectForm = ({ object, onDone }: Props) => {
             </option>
           ))}
         </select>
-        {errors.type && <span className="text-red-600">{errors.type.message}</span>}
+        {errors.type && (
+          <span className="text-red-600">{errors.type.message}</span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1">
@@ -123,10 +126,13 @@ export const ClassifyObjectForm = ({ object, onDone }: Props) => {
 
       <label className="flex flex-col gap-1">
         <span>
-          Notatka{threatLevel === "high" && " (wymagana przy zagrożeniu wysokim)"}
+          Notatka
+          {threatLevel === "high" && " (wymagana przy zagrożeniu wysokim)"}
         </span>
         <textarea {...register("note")} className="border p-1" rows={2} />
-        {errors.note && <span className="text-red-600">{errors.note.message}</span>}
+        {errors.note && (
+          <span className="text-red-600">{errors.note.message}</span>
+        )}
       </label>
 
       {mutation.isError && (
