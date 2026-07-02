@@ -59,7 +59,7 @@ export const handlers = [
 
   // PATCH /api/objects/:id
   // Ręczna klasyfikacja obiektu przez operatora.
-  // Body: { type?, threatLevel?, status?, note? }
+  // Body: { type?, threatLevel?, status?, note?, azimuth?, distance? }
   // Walidacja serwerowa: notatka wymagana przy zagrożeniu wysokim (422).
   http.patch("/api/objects/:id", async ({ params, request }) => {
     await delay(LATENCY);
@@ -69,6 +69,8 @@ export const handlers = [
       threatLevel?: ThreatLevel;
       status?: ObjectStatus;
       note?: string;
+      azimuth?: number;
+      distance?: number;
     };
 
     if (body.threatLevel === "high" && !body.note?.trim()) {
@@ -96,7 +98,7 @@ export const handlers = [
     return HttpResponse.json(updated);
   }),
 
-  http.get(`${API_BASE_URL}/products`, async ({ params }) => {
+  http.get(`${API_BASE_URL}/products`, async () => {
     const mockedProducts: ProductDto[] = [
       {
         id: "123",

@@ -1,5 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
@@ -12,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { projectFromRadar, type LatLng } from "./mapHelpers";
+import { ClassifyObjectForm } from "./ClassifyObjectForm";
 import { Text } from "@/ui";
 import type { DetectedObject } from "../../../mocks/types";
 
@@ -70,6 +72,9 @@ export const AppMap = () => {
     refetchInterval: 3000, // polling co 3s — symulacja czasu rzeczywistego
   });
 
+  // Obiekt wybrany do ręcznej klasyfikacji (formularz poniżej tabeli).
+  const [selected, setSelected] = useState<DetectedObject | null>(null);
+
   const renderIcon = (type: string, threatLevel: string) => {
     const Icon = ICONS[type] ?? HelpCircle;
 
@@ -117,6 +122,7 @@ export const AppMap = () => {
             <th>Threat Level</th>
             <th>Status</th>
             <th>Updated At</th>
+            <th>Akcje</th>
           </tr>
         </thead>
         <tbody>
@@ -150,10 +156,29 @@ export const AppMap = () => {
               <td className="p-2">
                 <Text>{obj.updatedAt}</Text>
               </td>
+              <td className="p-2">
+                {obj.type === "unknown" && (
+                  <button
+                    type="button"
+                    onClick={() => setSelected(obj)}
+                    className="border px-2 py-1"
+                  >
+                    Klasyfikuj
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {selected && (
+        <ClassifyObjectForm
+          key={selected.id}
+          object={selected}
+          onDone={() => setSelected(null)}
+        />
+      )}
     </div>
   );
 };

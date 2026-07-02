@@ -55,7 +55,12 @@ export const getById = (id: string): DetectedObject | undefined => {
 /** Aktualizuje pola obiektu i dopisuje wpis do historii. Zwraca zaktualizowany obiekt. */
 export const update = (
   id: string,
-  patch: Partial<Pick<DetectedObject, "type" | "threatLevel" | "status" | "note">>,
+  patch: Partial<
+    Pick<
+      DetectedObject,
+      "type" | "threatLevel" | "status" | "note" | "azimuth" | "distance"
+    >
+  >,
 ): DetectedObject | undefined => {
   const obj = objects.find((o) => o.id === id);
   if (!obj) return undefined;
