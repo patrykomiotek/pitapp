@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import {
@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { projectFromRadar, type LatLng } from "./mapHelpers";
+import { Text } from "@/ui";
 import type { DetectedObject } from "../../../mocks/types";
 
 // Pozycja stacji radaru — punkt odniesienia dla azymutu i odległości.
@@ -51,15 +52,23 @@ const radarIcon = L.divIcon({
   iconAnchor: [16, 16],
 });
 
-export const AppMap = () => {
-  const [objects, setObjects] = useState<DetectedObject[]>([]);
+// Fetcher dla react-query — rzuca błędem, żeby useQuery wykrył stan error.
+const fetchObjects = async (): Promise<DetectedObject[]> => {
+  const response = await fetch("/api/objects");
+  if (!response.ok) throw new Error("Nie udało się pobrać obiektów");
+  return response.json();
+};
 
-  useEffect(() => {
-    fetch("/api/objects")
-      .then((response) => response.json())
-      .then((data: DetectedObject[]) => setObjects(data ?? []))
-      .catch(() => setObjects([]));
-  }, []);
+export const AppMap = () => {
+  const {
+    data: objects = [],
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["objects"],
+    queryFn: fetchObjects,
+    refetchInterval: 3000, // polling co 3s — symulacja czasu rzeczywistego
+  });
 
   const renderIcon = (type: string, threatLevel: string) => {
     const Icon = ICONS[type] ?? HelpCircle;
@@ -69,6 +78,9 @@ export const AppMap = () => {
 
   return (
     <div>
+      {isPending && <p className="p-2">Ładowanie danych…</p>}
+      {isError && <p className="p-2 text-red-600">Błąd pobierania obiektów</p>}
+
       <MapContainer center={RADAR} zoom={6} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -111,15 +123,33 @@ export const AppMap = () => {
           {objects.map((obj) => (
             <tr key={obj.id}>
               <td className="p-2">{renderIcon(obj.type, obj.threatLevel)}</td>
-              <td className="p-2">{obj.id}</td>
-              <td className="p-2">{obj.type}</td>
-              <td className="p-2">{obj.azimuth}</td>
-              <td className="p-2">{obj.distance}</td>
-              <td className="p-2">{obj.speed}</td>
-              <td className="p-2">{obj.altitude}</td>
-              <td className="p-2">{obj.threatLevel}</td>
-              <td className="p-2">{obj.status}</td>
-              <td className="p-2">{obj.updatedAt}</td>
+              <td className="p-2">
+                <Text>{obj.id}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.type}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.azimuth}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.distance}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.speed}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.altitude}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.threatLevel}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.status}</Text>
+              </td>
+              <td className="p-2">
+                <Text>{obj.updatedAt}</Text>
+              </td>
             </tr>
           ))}
         </tbody>
