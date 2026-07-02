@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { ROUTE } from "../routes";
 import { Header } from "@/shared/ui";
-import { AppMap } from "@/shared/components/AppMap";
+import { AppMap } from "@/shared/components/Map/AppMap";
 
 export const MapPage = () => {
   return (
