@@ -6,6 +6,8 @@ import { routes } from "./routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@/shared/components/Theme/ThemeContext";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,8 +32,10 @@ function App() {
 
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
-            <RouterProvider router={routes} />
-            <ReactQueryDevtools initialIsOpen={false} />
+            <Provider store={store}>
+              <RouterProvider router={routes} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </Provider>
           </ThemeProvider>
         </QueryClientProvider>
         {/* <ProductsListPage /> */}

@@ -3,6 +3,7 @@ import { ROUTE } from "../routes";
 import { Header } from "@/shared/ui";
 import { AuthInfo } from "@/shared/components/Auth/AuthInfo";
 import { AuthProvider } from "@/shared/components/Auth/AuthContext";
+import { Counter } from "@/features/counter/Counter";
 
 export const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ export const HomePage = () => {
       </Helmet>
       <div>
         <Header>Home page</Header>
+        <Counter />
         <AuthProvider>
           <AuthInfo />
         </AuthProvider>
