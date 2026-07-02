@@ -1,7 +1,16 @@
 import "leaflet/dist/leaflet.css";
+import { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 export const AppMap = () => {
+  // const { } = useMap();
+
+  useEffect(() => {
+    fetch("/api/objects")
+      .then((response) => response.json)
+      .then((data) => console.log(data));
+  }, []);
+
   return (
     <div>
       <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>

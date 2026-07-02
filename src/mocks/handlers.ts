@@ -12,6 +12,8 @@ export const handlers = [
   // GET /api/objects?type=&threatLevel=
   // Lista wykrytych obiektów. Przy każdym pobraniu obiekty się przemieszczają
   // (symulacja czasu rzeczywistego pod refetchInterval / polling).
+
+  // axios.get('/api/objects').then()
   http.get("/api/objects", async ({ request }) => {
     await delay(LATENCY);
     advance();
