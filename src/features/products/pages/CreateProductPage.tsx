@@ -1,4 +1,4 @@
-import { Header } from "../../../ui";
+import { Header } from "../../../shared/ui";
 import { CreateProductForm } from "../components/CreateProductForm";
 import type { CreateProductDto } from "../contracts/Product.dto";
 import { createProduct } from "../services/products";

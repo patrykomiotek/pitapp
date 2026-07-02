@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Header } from "../../../ui";
+import { Header } from "../../../shared/ui";
 import type { ProductDto } from "../contracts/Product.dto";
 import { fetchProduct } from "../services/products";
 import { ProductDetails } from "../components/ProductDetails";

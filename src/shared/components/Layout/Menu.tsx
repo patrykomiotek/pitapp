@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { ROUTE } from "../../routes";
-import { ThemeSwitcher } from "components/Theme/ThemeSwitcher";
+import { ROUTE } from "../../../routes";
+import { ThemeSwitcher } from "@/shared/components/Theme/ThemeSwitcher";
 
 export const Menu = () => {
   return (

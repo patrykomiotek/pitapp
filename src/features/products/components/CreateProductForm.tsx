@@ -1,5 +1,5 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { Button, Input } from "ui";
+import { Button, Input } from "@/shared/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   createProductSchema,

@@ -1,19 +1,11 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import { Counter } from "./components/Counter";
-import Generator from "./components/Generator";
-import { IndexKeys } from "./components/IndexKeys";
-import { RegistrationFormWithRefs } from "./components/RegistrationFormWithRefs";
-import { RegistrationFormWithRHF } from "./components/RegistrationFormWithRHF";
-import { RegistrationFormWithState } from "./components/RegistrationFormWithState";
-import { UserAge } from "./components/UserAge";
-import { ProductsListPage } from "./features/products/pages/ProductsListPage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { routes } from "./routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ThemeProvider } from "components/Theme/ThemeContext";
+import { ThemeProvider } from "@/shared/components/Theme/ThemeContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {

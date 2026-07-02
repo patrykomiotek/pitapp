@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout";
+import { Layout } from "./shared/components/Layout/Layout";
 import { ProductsListPage } from "./features/products/pages/ProductsListPage";
 import { GeneratorPage } from "./pages/GeneratorPage";
 import { HomePage } from "./pages/HomePage";

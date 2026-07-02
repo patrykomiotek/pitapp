@@ -1,4 +1,4 @@
-import { Button, Header } from "../../../ui";
+import { Button, Header } from "../../../shared/ui";
 import { ProductsList } from "../components/ProductsList";
 import type { ProductDto } from "../contracts/Product.dto";
 import { fetchProducts } from "../services/products";

@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import Generator from "../components/Generator";
+import Generator from "../shared/components/Generator";
 import { ROUTE } from "../routes";
 
 export const GeneratorPage = () => {
