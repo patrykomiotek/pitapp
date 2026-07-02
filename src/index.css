@@ -4,7 +4,9 @@ body.dark {
   background-color: #1e293b;
 }
 
-
+.leaflet-container {
+  height: 400px;
+}
 
 
 /* :root {

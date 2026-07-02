@@ -1,6 +1,9 @@
 import { http, HttpResponse, delay } from "msw";
 import { advance, getAll, getById, update } from "./db";
 import type { ObjectStatus, ObjectType, ThreatLevel } from "./types";
+import type { ProductDto } from "@/features/products/contracts/Product.dto";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Symulowane opóźnienie sieci (ms).
 const LATENCY = 300;
@@ -15,7 +18,9 @@ export const handlers = [
 
     const url = new URL(request.url);
     const type = url.searchParams.get("type") as ObjectType | null;
-    const threatLevel = url.searchParams.get("threatLevel") as ThreatLevel | null;
+    const threatLevel = url.searchParams.get(
+      "threatLevel",
+    ) as ThreatLevel | null;
 
     // Lista bez historii — historia tylko w widoku szczegółów.
     let data = getAll().map((o) => ({
@@ -42,7 +47,10 @@ export const handlers = [
     await delay(LATENCY);
     const obj = getById(params.id as string);
     if (!obj) {
-      return HttpResponse.json({ message: "Nie znaleziono obiektu" }, { status: 404 });
+      return HttpResponse.json(
+        { message: "Nie znaleziono obiektu" },
+        { status: 404 },
+      );
     }
     return HttpResponse.json(obj);
   }),
@@ -78,8 +86,40 @@ export const handlers = [
     });
 
     if (!updated) {
-      return HttpResponse.json({ message: "Nie znaleziono obiektu" }, { status: 404 });
+      return HttpResponse.json(
+        { message: "Nie znaleziono obiektu" },
+        { status: 404 },
+      );
     }
     return HttpResponse.json(updated);
+  }),
+
+  http.get(`${API_BASE_URL}/products`, async ({ params }) => {
+    const mockedProducts: ProductDto[] = [
+      {
+        id: "123",
+        fields: {
+          name: "prod 1",
+          description: "lorem ipsum",
+          price: 123,
+          created_at: "",
+          updated_at: "",
+        },
+      },
+      {
+        id: "321",
+        fields: {
+          name: "prod 2",
+          description: "lorem ipsum 2",
+          price: 23,
+          created_at: "",
+          updated_at: "",
+        },
+      },
+    ];
+
+    return HttpResponse.json({
+      records: mockedProducts,
+    });
   }),
 ];
