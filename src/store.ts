@@ -18,3 +18,7 @@ export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 export type AppStore = typeof store;
+
+type ColorType = `color-${number}`;
+
+const color1: ColorType = "color-123";

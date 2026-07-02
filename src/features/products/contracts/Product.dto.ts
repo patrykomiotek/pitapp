@@ -18,3 +18,13 @@ export const createProductSchema = z.object({
 });
 
 export type CreateProductDto = z.infer<typeof createProductSchema>;
+
+type ProductDtoOptional = Partial<ProductDto>;
+type ProductDtoRequired = Required<ProductDtoOptional>;
+type ProductDtoPicked = Pick<ProductDto, "fields">;
+type ProductDtoOmit = Omit<ProductDto, "id">;
+type ProductDtoReadonly = Readonly<ProductDto>;
+
+const sum = (a: number, b: number) => a + b;
+
+type FunctionReturn = ReturnType<typeof sum>;
