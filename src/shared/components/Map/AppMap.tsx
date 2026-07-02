@@ -61,6 +61,12 @@ export const AppMap = () => {
       .catch(() => setObjects([]));
   }, []);
 
+  const renderIcon = (type: string, threatLevel: string) => {
+    const Icon = ICONS[type] ?? HelpCircle;
+
+    return <Icon color={THREAT_COLOR[threatLevel] ?? "#334155"} size={28} />;
+  };
+
   return (
     <div>
       <MapContainer center={RADAR} zoom={6} scrollWheelZoom={false}>
@@ -85,6 +91,39 @@ export const AppMap = () => {
           <Popup>Stacja radaru</Popup>
         </Marker>
       </MapContainer>
+
+      <table className="p-2">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Azimuth</th>
+            <th>Distance</th>
+            <th>Speed</th>
+            <th>Altitude</th>
+            <th>Threat Level</th>
+            <th>Status</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {objects.map((obj) => (
+            <tr key={obj.id}>
+              <td className="p-2">{renderIcon(obj.type, obj.threatLevel)}</td>
+              <td className="p-2">{obj.id}</td>
+              <td className="p-2">{obj.type}</td>
+              <td className="p-2">{obj.azimuth}</td>
+              <td className="p-2">{obj.distance}</td>
+              <td className="p-2">{obj.speed}</td>
+              <td className="p-2">{obj.altitude}</td>
+              <td className="p-2">{obj.threatLevel}</td>
+              <td className="p-2">{obj.status}</td>
+              <td className="p-2">{obj.updatedAt}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
