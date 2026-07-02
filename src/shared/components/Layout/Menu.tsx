@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { ROUTE } from "../../../routes";
 import { ThemeSwitcher } from "@/shared/components/Theme/ThemeSwitcher";
+import { Cart } from "@/features/cart/Cart";
 
 export const Menu = () => {
   return (
@@ -25,6 +26,9 @@ export const Menu = () => {
           <NavLink to={ROUTE.CREATE_PRODUCT.path} className="text-blue-600">
             Create product
           </NavLink>
+        </li>
+        <li className="mr-4">
+          <Cart />
         </li>
         <li className="mr-4">
           <ThemeSwitcher />
