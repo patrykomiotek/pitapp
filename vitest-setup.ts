@@ -9,15 +9,6 @@ import { server } from "./src/mocks/node";
 
 expect.extend(toHaveNoViolations);
 
-beforeEach(() => {
-  server.listen();
-});
-
-afterEach(() => {
-  // cleanup();
-  server.resetHandlers();
-});
-
-afterAll(() => {
-  server.close();
-});
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());

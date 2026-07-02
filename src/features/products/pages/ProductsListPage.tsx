@@ -1,8 +1,8 @@
 import { Button, Header } from "../../../shared/ui";
 import { ProductsList } from "../components/ProductsList";
-import type { ProductDto } from "../contracts/Product.dto";
+// import type { ProductDto } from "../contracts/Product.dto";
 import { fetchProducts } from "../services/products";
-import { useApi } from "@/shared/hooks/useApi";
+// import { useApi } from "@/shared/hooks/useApi";
 import { useQuery } from "@tanstack/react-query";
 
 export const ProductsListPage = () => {
