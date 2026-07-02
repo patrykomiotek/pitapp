@@ -5,6 +5,7 @@ import { GeneratorPage } from "./pages/GeneratorPage";
 import { HomePage } from "./pages/HomePage";
 import { CreateProductPage } from "./features/products/pages/CreateProductPage";
 import { ProductDetailsPage } from "./features/products/pages/ProductDetailsPage";
+import { MapPage } from "./pages/MapPage";
 
 export const ROUTE: Record<string, { path: string; title: string }> = {
   HOME: {
@@ -26,6 +27,10 @@ export const ROUTE: Record<string, { path: string; title: string }> = {
   CREATE_PRODUCT: {
     path: "/products/create",
     title: "Create Product",
+  },
+  MAP: {
+    path: "/map",
+    title: "Map",
   },
 };
 
@@ -52,6 +57,10 @@ export const routes = createBrowserRouter([
       {
         path: ROUTE.CREATE_PRODUCT.path,
         element: <CreateProductPage />,
+      },
+      {
+        path: ROUTE.MAP.path,
+        element: <MapPage />,
       },
     ],
   },

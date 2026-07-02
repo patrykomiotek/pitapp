@@ -28,6 +28,11 @@ export const Menu = () => {
           </NavLink>
         </li>
         <li className="mr-4">
+          <NavLink to={ROUTE.MAP.path} className="text-blue-600">
+            Map
+          </NavLink>
+        </li>
+        <li className="mr-4">
           <Cart />
         </li>
         <li className="mr-4">
